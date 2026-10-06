@@ -1,0 +1,72 @@
+import java.util.Scanner;
+ 
+public class SwitchCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+ 
+        System.out.print("Enter the value for x: ");
+        double x = scanner.nextDouble();
+ 
+        System.out.print("Enter the value for y: ");
+        double y = scanner.nextDouble();
+ 
+        System.out.println("\n--- Calculator Started ---");
+        System.out.println("Type 'Q' when asked for an operator to quit.");
+ 
+        
+        while (true) {
+            System.out.print("\nEnter a new number: ");
+            double num = scanner.nextDouble();
+ 
+            System.out.print("Choose an operator (+, -, *, /) or 'Q' to quit: ");
+            char operator = scanner.next().charAt(0);
+ 
+            
+            if (operator == 'Q' || operator == 'q') {
+                System.out.println("Exiting program. Goodbye!");
+                break;
+
+            }
+ 
+            double result = 0;
+            boolean validOperation = true;
+            
+            switch (operator) {
+                case '+':
+                    result = x + y + num;
+                    System.out.println("Calculation: " + x + " + " + y + " + " + num);
+                    break;
+                case '-':
+                    result = x + y - num;
+                    System.out.println("Calculation: (" + x + " + " + y + ") - " + num);
+                    break;
+                case '*':
+                    result = x * y * num;
+                    System.out.println("Calculation: " + x + " * " + y + " * " + num);
+                    break;
+                case '/':
+                    if (num == 0) {
+                        System.out.println("Error: Cannot divide by zero.");
+                        validOperation = false;
+                    } else {
+                        result = (x / y) / num;
+                        System.out.println("Calculation: (" + x + " / " + y + ") / " + num);
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid operator! Please enter +, -, *, or /.");
+                    validOperation = false;
+                    break;
+            }
+ 
+            if (validOperation) {
+                System.out.println("Result: " + result);
+            }
+
+        }
+
+        scanner.close();
+
+    }
+
+}
